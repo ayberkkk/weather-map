@@ -1,38 +1,33 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import WeatherCard from './WeatherCard';
 
-const WeatherFetcher = ({ city, apiKey }) => {
+const WeatherFetcher = ({ apiKey, city }) => {
   const [weatherData, setWeatherData] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchWeatherData = async () => {
       try {
         const response = await fetch(
-          `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}`
+          `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${city}&days=7`
         );
-        if (!response.ok) {
-          throw new Error('Hava durumu verileri alınamadı.');
-        }
         const data = await response.json();
-        setWeatherData(data.current);
+        setWeatherData(data);
         setLoading(false);
       } catch (error) {
-        setError(error.message);
-        setLoading(false);
+        console.log('Error fetching weather data:', error);
       }
     };
 
     fetchWeatherData();
-  }, [city, apiKey]);
+  }, [apiKey, city]);
 
   if (loading) {
-    return <div>Bekleniyor...</div>;
+    return <div>Loading...</div>;
   }
 
-  if (error) {
-    return <div>{error}</div>;
+  if (!weatherData || !weatherData.forecast) {
+    return <div>Unable to fetch weather data.</div>;
   }
 
   return <WeatherCard weatherData={weatherData} />;

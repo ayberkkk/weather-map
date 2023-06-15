@@ -1,23 +1,30 @@
 import React, { useState } from "react";
+import { Container, Row, Col } from "reactstrap";
 import CityInput from "./components/CityInput";
 import WeatherFetcher from "./components/WeatherFetcher ";
-import WeatherCard from "./components/WeatherCard";
+import "./App.css";
 
 const App = () => {
-  const apiKey = "5d2ccd799930f37c67eea31487ca9fbc"; // API anahtarını buraya girin
-  const [selectedCity, setSelectedCity] = useState("");
+  const [city, setCity] = useState("");
 
-  const handleCitySelect = (city) => {
-    setSelectedCity(city);
+  const handleCitySelect = (selectedCity) => {
+    setCity(selectedCity);
   };
 
   return (
-    <div className="App">
-      <h1>Hava Durumu Uygulaması</h1>
-      <CityInput onCitySelect={handleCitySelect} />
-      {selectedCity && <WeatherFetcher city={selectedCity} apiKey={apiKey} />}
-      <WeatherCard />
-    </div>
+    <Container className="text-center mt-5 d-table m-auto w-50">
+      <Row>
+        <Col className="border-3 shadow-lg rounded-2 p-4">
+          <CityInput onCitySelect={handleCitySelect} />
+          {city && (
+            <WeatherFetcher
+              apiKey="bff45e15412b4c86a0e120043231406"
+              city={city}
+            />
+          )}
+        </Col>
+      </Row>
+    </Container>
   );
 };
 

@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
+import { Button, Input } from "reactstrap";
 
 const CityInput = ({ onCitySelect }) => {
-  const [city, setCity] = useState('');
+  const [city, setCity] = useState("");
 
   const handleInputChange = (event) => {
     setCity(event.target.value);
@@ -9,19 +10,26 @@ const CityInput = ({ onCitySelect }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+
+    if (city.trim() === "") {
+      return;
+    }
+
     onCitySelect(city);
-    setCity('');
+    setCity("");
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
+    <form onSubmit={handleSubmit} className="d-flex align-content-center">
+      <Input
         type="text"
         value={city}
         onChange={handleInputChange}
-        placeholder="Şehir adı girin"
+        placeholder="..."
       />
-      <button type="submit">Gönder</button>
+      <Button type="submit" disabled={!city}>
+        Ara
+      </Button>
     </form>
   );
 };
