@@ -30,7 +30,7 @@ const WeatherFetcher = ({ apiKey, city }) => {
     return <div>Unable to fetch weather data.</div>;
   }
 
-  return <WeatherCard weatherData={weatherData} />;
+  return <WeatherCard weatherData={weatherData} city={city}/>;
 };
 
 export default WeatherFetcher;

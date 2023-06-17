@@ -1,18 +1,19 @@
-.loading {
-  border: 16px solid #f3f3f3;
-  border-top: 16px solid #3498db;
-  border-radius: 50%;
-  width: 120px;
-  height: 120px;
-  animation: spin 2s linear infinite;
-  margin: 0 auto;
+.app {
+    height: 100vh;
 }
 
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
+.app.day-mode {
+    background-color: rgb(255 166 0 / 68%)
+}
+
+.app.night-mode {
+    background-color: rgb(35, 34, 33);
+}
+
+.MuiFormLabel-root.Mui-focused {
+    color: #fff !important;
+}
+
+.shadow-lg {
+    box-shadow: 0 1rem 3rem rgb(255 255 255 / 9%) !important;
 }

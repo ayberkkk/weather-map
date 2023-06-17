@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Input } from "reactstrap";
+import { TextField, Button } from "@material-ui/core";
 
 const CityInput = ({ onCitySelect }) => {
   const [city, setCity] = useState("");
@@ -20,14 +20,19 @@ const CityInput = ({ onCitySelect }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="d-flex align-content-center">
-      <Input
+    <form
+      onSubmit={handleSubmit}
+      className="d-flex align-content-center pt-lg-3"
+    >
+      <TextField
         type="text"
+        className="w-100"
         value={city}
         onChange={handleInputChange}
-        placeholder="..."
+        label="City"
+        style={{ textTransform: 'uppercase' }}
       />
-      <Button type="submit" disabled={!city}>
+      <Button type="submit" disabled={!city} variant="outlined">
         Ara
       </Button>
     </form>
