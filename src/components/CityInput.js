@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { TextField, Button } from "@material-ui/core";
+import { Container, Row, Col } from "reactstrap";
 
 const CityInput = ({ onCitySelect }) => {
   const [city, setCity] = useState("");
@@ -20,7 +21,10 @@ const CityInput = ({ onCitySelect }) => {
   };
 
   return (
-    <form
+   <Container>
+    <Row>
+      <Col>
+      <form
       onSubmit={handleSubmit}
       className="d-flex align-content-center pt-lg-3"
     >
@@ -36,6 +40,9 @@ const CityInput = ({ onCitySelect }) => {
         Ara
       </Button>
     </form>
+      </Col>
+    </Row>
+   </Container>
   );
 };
 

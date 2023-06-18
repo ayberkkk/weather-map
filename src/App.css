@@ -1,7 +1,6 @@
 .app {
-    height: 100vh;
+    height: 100%;
 }
-
 .app.day-mode {
     background-color: rgb(255 166 0 / 68%)
 }
@@ -16,4 +15,47 @@
 
 .shadow-lg {
     box-shadow: 0 1rem 3rem rgb(255 255 255 / 9%) !important;
+}
+
+.current-day {
+    overflow: hidden;
+    box-shadow: rgb(226, 226, 226) 0px 0px 30px 6px;
+    border-radius: 10px;
+    height: auto;
+}
+
+.current-day h6 {
+    font-size: 40px;
+    color: #5e82f4;
+}
+
+.current-day p {
+    font-size: 30px;
+    font-weight: 600;
+    color: #5e82f4;
+    margin-bottom: 0px;
+}
+
+.current-day .current-day-condition {
+    font-size: 20px;
+    text-transform: capitalize;
+}
+
+.description .description-name {
+    font-size: 18px !important;
+    padding: 5px;
+    color: #252525;
+}
+
+.description .description-current-data {
+    background-color: #5e82f4;
+    margin: 5px;
+    border-radius: 10px;
+}
+
+.description .description-data {
+    padding: 5px;
+    margin-left: 10px;
+    font-size: 18px;
+    color: #fff;
 }
