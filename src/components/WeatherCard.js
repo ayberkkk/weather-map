@@ -22,7 +22,6 @@ const WeatherCard = ({ weatherData, city }) => {
   return (
     <Container>
       <Row>
-        <Col lg={12} className="mt-lg-5 weather-card">
           <Col lg={4}>
             <div className="current-day">
               <div className="mt-5 mb-5">
@@ -97,7 +96,6 @@ const WeatherCard = ({ weatherData, city }) => {
               ))}
             </TableBody>
           </Table>
-        </Col>
       </Row>
     </Container>
   );
