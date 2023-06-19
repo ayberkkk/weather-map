@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { MapContainer, TileLayer, Marker } from "react-leaflet";
+import { Container, Row, Col } from "reactstrap";
 
 const UserMap = () => {
   const [latitude, setLatitude] = useState(null);
@@ -20,16 +21,26 @@ const UserMap = () => {
   const position = [latitude, longitude];
 
   return (
-    <div style={{ height: "250px", width: "100%" }}>
-      {latitude && longitude ? (
-        <MapContainer center={position} zoom={13} style={{ height: "100%", width: "100%" }}>
-          <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-          <Marker position={position} />
-        </MapContainer>
-      ) : (
-        <div>Konum bilgisi alınamadı.</div>
-      )}
-    </div>
+    <Container>
+      <Row>
+        <Col>
+          <div style={{ height: "230px", width: "100%" }}>
+            {latitude && longitude ? (
+              <MapContainer
+                center={position}
+                zoom={13}
+                style={{ height: "100%", width: "100%" }}
+              >
+                <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+                <Marker position={position} />
+              </MapContainer>
+            ) : (
+              <div>Konum bilgisi alınamadı.</div>
+            )}
+          </div>
+        </Col>
+      </Row>
+    </Container>
   );
 };
 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import {
   Typography,
   Table,
@@ -7,33 +7,10 @@ import {
   TableRow,
   TableCell,
 } from "@material-ui/core";
-
 import UserMap from "./UserMap";
 import { Container, Row, Col } from "reactstrap";
 
 const WeatherCard = ({ weatherData, city }) => {
-  const [userLocation, setUserLocation] = useState(null);
-
-  useEffect(() => {
-    const getUserLocation = () => {
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(
-          (position) => {
-            const { latitude, longitude } = position.coords;
-            setUserLocation({ latitude, longitude });
-          },
-          (error) => {
-            console.error("Konum alınamadı:", error);
-          }
-        );
-      } else {
-        console.error("Tarayıcı konum desteği sağlamıyor.");
-      }
-    };
-
-    getUserLocation();
-  }, []);
-
   if (!weatherData) {
     return <div className="loading">Veri yükleniyor...</div>;
   }
@@ -43,9 +20,9 @@ const WeatherCard = ({ weatherData, city }) => {
   const forecastDays = forecast.forecastday.slice(1);
 
   return (
-    <div className="mt-5">
-      <Container>
-        <Row>
+    <Container>
+      <Row>
+        <Col lg={12} className="mt-lg-5 weather-card">
           <Col lg={4}>
             <div className="current-day">
               <div className="mt-5 mb-5">
@@ -60,17 +37,17 @@ const WeatherCard = ({ weatherData, city }) => {
             </div>
           </Col>
           <Col lg={4}>
-          <div className="current-day description">
-            <div className="mt-3">
+            <div className="current-day description">
               <div className="d-flex align-items-center">
                 <div
-                  className="w-50 d-lg-block d-sm-none text-start m-lg-4"
+                  className="w-50 d-lg-block d-sm-none text-start"
                   style={{ height: "220px" }}
                 >
-                  <p className="description-name">Açıklama:</p>
-                  <p className="description-name">Min:</p>
-                  <p className="description-name">Max:</p>
-                  <p className="description-name">Rüzgar:</p>
+                  <p className="description-name">Açıklama</p>
+                  <p className="description-name">Min</p>
+                  <p className="description-name">Max</p>
+                  <p className="description-name">Rüzgar</p>
+                  <p className="description-name">UV</p>
                 </div>
                 <div
                   className="w-50 text-start description-current-data"
@@ -88,41 +65,41 @@ const WeatherCard = ({ weatherData, city }) => {
                   <p className="description-data">
                     {currentDay.day.maxwind_kph} km/h
                   </p>
+                  <p className="description-data">{currentDay.day.uv} km/h</p>
                 </div>
               </div>
             </div>
-          </div>
           </Col>
           <Col lg={4}>
-          <div className="current-day maps">
-            {userLocation && <UserMap userLocation={userLocation} />}
-          </div>
+            <div className="current-day maps">
+              <UserMap />
+            </div>
           </Col>
-        </Row>
-      </Container>
-      <Table>
-        <TableHead>
-          <TableRow>
-            <TableCell>Tarih</TableCell>
-            <TableCell>Açıklama</TableCell>
-            <TableCell>Min Sıcaklık</TableCell>
-            <TableCell>Max Sıcaklık</TableCell>
-            <TableCell>Rüzgar Hızı</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {forecastDays.map((day) => (
-            <TableRow key={day.date}>
-              <TableCell>{day.date}</TableCell>
-              <TableCell>{day.day.condition.text}</TableCell>
-              <TableCell>{day.day.mintemp_c}°C</TableCell>
-              <TableCell>{day.day.maxtemp_c}°C</TableCell>
-              <TableCell>{day.day.maxwind_kph} km/h</TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </div>
+          <Table>
+            <TableHead>
+              <TableRow>
+                <TableCell>Tarih</TableCell>
+                <TableCell>Açıklama</TableCell>
+                <TableCell>Min</TableCell>
+                <TableCell>Max</TableCell>
+                <TableCell>Rüzgar Hızı</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {forecastDays.map((day) => (
+                <TableRow key={day.date}>
+                  <TableCell>{day.date}</TableCell>
+                  <TableCell>{day.day.condition.text}</TableCell>
+                  <TableCell>{day.day.mintemp_c}°C</TableCell>
+                  <TableCell>{day.day.maxtemp_c}°C</TableCell>
+                  <TableCell>{day.day.maxwind_kph} km/h</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </Col>
+      </Row>
+    </Container>
   );
 };
 
