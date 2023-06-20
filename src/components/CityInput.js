@@ -58,8 +58,14 @@ const CityInput = ({ onCitySelect }) => {
                 placeholder="City"
               />
             </FormGroup>
-            <Button className="mb-3" type="submit" disabled={!city} outline>
-              <FaSearchLocation />
+            <Button
+              className="submit-btn mb-3"
+              type="submit"
+              disabled={!city}
+              outline
+            >
+              <FaSearchLocation size={18} />
+              <span className="m-1">Search</span>
             </Button>
           </Form>
         </Col>

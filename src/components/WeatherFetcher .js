@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import WeatherCard from './WeatherCard';
+import React, { useState, useEffect } from "react";
+import WeatherCard from "./WeatherCard";
+import UnableData from "./UnableData";
 
 const WeatherFetcher = ({ apiKey, city }) => {
   const [weatherData, setWeatherData] = useState(null);
@@ -15,7 +16,7 @@ const WeatherFetcher = ({ apiKey, city }) => {
         setWeatherData(data);
         setLoading(false);
       } catch (error) {
-        console.log('Error fetching weather data:', error);
+        console.log("Error fetching weather data:", error);
       }
     };
 
@@ -27,10 +28,14 @@ const WeatherFetcher = ({ apiKey, city }) => {
   }
 
   if (!weatherData || !weatherData.forecast) {
-    return <div>Unable to fetch weather data.</div>;
+    return (
+      <div>
+       <UnableData/>
+      </div>
+    );
   }
 
-  return <WeatherCard weatherData={weatherData} city={city}/>;
+  return <WeatherCard weatherData={weatherData} city={city} />;
 };
 
 export default WeatherFetcher;

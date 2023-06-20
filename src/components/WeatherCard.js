@@ -20,10 +20,10 @@ const WeatherCard = ({ weatherData, city }) => {
   const forecastDays = forecast.forecastday.slice(1);
 
   return (
-    <Container>
+    <Container className="border-3 shadow-lg rounded-2 bg-white mt-3 mb-3">
       <Row>
           <Col lg={4}>
-            <div className="current-day">
+            <div className="current-day rounded-2">
               <div className="mt-5 mb-5">
                 <Typography variant="h6" style={{ textTransform: "uppercase" }}>
                   {city}
@@ -36,7 +36,7 @@ const WeatherCard = ({ weatherData, city }) => {
             </div>
           </Col>
           <Col lg={4}>
-            <div className="current-day description">
+            <div className="current-day rounded-2 description">
               <div className="d-flex align-items-center">
                 <div
                   className="w-50 d-lg-block d-sm-none text-start"
@@ -49,7 +49,7 @@ const WeatherCard = ({ weatherData, city }) => {
                   <p className="description-name">UV</p>
                 </div>
                 <div
-                  className="w-50 text-start description-current-data"
+                  className="w-50 text-start description-current-data rounded-2"
                   style={{ height: "220px" }}
                 >
                   <p className="description-data">
@@ -70,7 +70,7 @@ const WeatherCard = ({ weatherData, city }) => {
             </div>
           </Col>
           <Col lg={4}>
-            <div className="current-day maps">
+            <div className="current-day rounded-2 maps">
               <UserMap />
             </div>
           </Col>

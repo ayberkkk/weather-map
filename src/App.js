@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Container, Row, Col } from "reactstrap";
 import CityInput from "./components/CityInput";
 import WeatherFetcher from "./components/WeatherFetcher ";
+import Background from "./components/DynamicBg";
 import "./App.css";
 
 const App = () => {
@@ -12,10 +13,10 @@ const App = () => {
   };
 
   return (
-   
       <Container className="text-center d-table m-auto overflow-x-hidden d-block">
         <Row>
-          <Col className="border-3 shadow-lg rounded-2 bg-white mt-4">
+        <Background />
+          <Col className="mt-4 position-static z-1">
             <CityInput onCitySelect={handleCitySelect} />
             {city && (
               <WeatherFetcher
